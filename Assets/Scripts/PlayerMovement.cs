@@ -14,6 +14,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (InspectSystem.IsInspecting) //check if player is inspecting an item
+        {
+            _moveDirtection = Vector3.zero;
+            return;
+        }
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
 

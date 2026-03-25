@@ -7,10 +7,14 @@ public class InspectSystem : MonoBehaviour
     [SerializeField] private float rotationSpeed = 500f;
     [SerializeField] private float moveSpeed = 10f;
 
+    [SerializeField] private LayerMask clueLayer; // set to clue
+
+    public static bool IsInspecting { get; private set; }
+
     private Transform currentItem;
     private Vector3 originalPos;
     private Quaternion originalRot;
-    private bool isMoving = false;
+    //private bool isMoving = false;
 
     void Update()
     {
@@ -23,13 +27,18 @@ public class InspectSystem : MonoBehaviour
         }
 
         // rotate using left click
-        if (Input.GetMouseButton(0))
-        {
-            float rotX = Input.GetAxis("Mouse Y") * rotationSpeed * Time.deltaTime;
-            float rotY = -Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
+     //   if (Input.GetMouseButton(0))
+     //   {
+         float rotX = Input.GetAxis("Mouse Y") * rotationSpeed * Time.deltaTime;
+         float rotY = -Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
 
-            currentItem.Rotate(inspectionSocket.up, rotY, Space.World);
-            currentItem.Rotate(inspectionSocket.right, rotX, Space.World);
+         currentItem.Rotate(inspectionSocket.up, rotY, Space.World);
+         currentItem.Rotate(inspectionSocket.right, rotX, Space.World);
+     //   }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            CheckForClue();
         }
 
         // right click to stop inspecting
@@ -39,9 +48,26 @@ public class InspectSystem : MonoBehaviour
         }
     }
 
+    private void CheckForClue()
+    {
+        // shoot a ray from the center of the camera forward
+        Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, 5f, clueLayer))
+        {
+            if (hit.collider.TryGetComponent<InspectClue>(out InspectClue clue))
+            {
+                clue.OnFound();
+            }
+        }
+    }
+
     public void StartInspecting(Transform itemTransform)
     {
         if (currentItem != null) return; // check if already inspecting
+        
+        IsInspecting = true; //block other inputs
 
         currentItem = itemTransform;
 
@@ -54,6 +80,8 @@ public class InspectSystem : MonoBehaviour
         {
             rb.isKinematic = true;
         }
+
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void StopInspecting()
@@ -62,12 +90,14 @@ public class InspectSystem : MonoBehaviour
         currentItem.position = originalPos;
         currentItem.rotation = originalRot;
 
-        // Re-enable physics if needed
+        // reenable physics if needed
         if (currentItem.TryGetComponent<Rigidbody>(out Rigidbody rb))
         {
             rb.isKinematic = false;
         }
 
+        IsInspecting = false; // allow other inputs
         currentItem = null;
+
     }
 }
