@@ -8,7 +8,7 @@ public class InspectSystem : MonoBehaviour
     [SerializeField] private float moveSpeed = 10f;
 
     [SerializeField] private LayerMask clueLayer; // set to clue
-
+    [SerializeField] private float clueRayDistance = 1f;
     public static bool IsInspecting { get; private set; }
 
     private Transform currentItem;
@@ -54,7 +54,7 @@ public class InspectSystem : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, 5f, clueLayer))
+        if (Physics.Raycast(ray, out hit, clueRayDistance, clueLayer))
         {
             if (hit.collider.TryGetComponent<InspectClue>(out InspectClue clue))
             {
