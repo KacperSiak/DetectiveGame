@@ -14,6 +14,8 @@ public class CameraLook : MonoBehaviour
 
     private void Update()
     {
+        if (InspectSystem.IsInspecting) return; //if inspecting an item, stop camera movement
+
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
