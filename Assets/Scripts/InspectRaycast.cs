@@ -33,10 +33,10 @@ public class InspectRaycast : MonoBehaviour
 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    //inspectSystem.StartInspecting(hit.collider.transform);
+                    inspectSystem.StartInspecting(hit.collider.transform);
 
-                    
-                    //CrosshairChange(false);
+
+                    CrosshairChange(false);
                 }
 
             }
