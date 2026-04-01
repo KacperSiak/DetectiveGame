@@ -1,6 +1,15 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
+
+[System.Serializable]
+public class ClueEntry
+{
+    public string description;
+    public Sprite photo;
+}
 
 public class JournalManager : MonoBehaviour
 {
@@ -8,25 +17,29 @@ public class JournalManager : MonoBehaviour
 
     [Header("UI References")]
     [SerializeField] private GameObject journalPanel;
-    [SerializeField] private TextMeshProUGUI clueListText; // A single large text block or a template
-    [SerializeField] private GameObject newClueNotification; // new clue popup
+    [SerializeField] private Canvas mainUICanvas; // main hud canvas
+    [SerializeField] private Transform clueContainer; //vertical layer group
+    [SerializeField] private GameObject cluePrefab; // prefab with image and textmeshpro
+
+    [Header("Notification")]
+    [SerializeField] private GameObject newClueNotification;
     [SerializeField] private float popupDuration = 3f;
 
-    private List<string> discoveredClues = new List<string>();
+    [Header("Photo Settings")]
+    [SerializeField] private int photoSize = 512; // size of photo
+
+    private List<ClueEntry> discoveredClues = new List<ClueEntry>();
 
     private void Awake()
     {
-        // Singleton setup
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
 
         journalPanel.SetActive(false);
-        if (newClueNotification) newClueNotification.SetActive(false);
     }
 
     private void Update()
     {
-        // Toggle Journal with 'J' key
         if (Input.GetKeyDown(KeyCode.J) && !InspectSystem.IsInspecting)
         {
             ToggleJournal();
@@ -35,23 +48,55 @@ public class JournalManager : MonoBehaviour
 
     public void AddClue(string description)
     {
-        // Don't add the same clue twice
-        if (!discoveredClues.Contains(description))
+        // prevent duplicates
+        foreach (var entry in discoveredClues)
         {
-            discoveredClues.Add(description);
-            UpdateJournalUI();
-            StartCoroutine(ShowNotification());
-            //Debug.Log("Journal Updated: " + description);
+            if (entry.description == description) return;
         }
+
+        StartCoroutine(CapturePhotoRoutine(description));
     }
 
-    private void UpdateJournalUI()
+    //take screenshot
+    private IEnumerator CapturePhotoRoutine(string description)
     {
-        clueListText.text = ""; // Clear current text
-        foreach (string clue in discoveredClues)
-        {
-            clueListText.text += "• " + clue + "\n\n";
-        }
+        //hide ui
+        mainUICanvas.enabled = false;
+
+        // wait for new frame
+        yield return new WaitForEndOfFrame();
+
+        // center position
+        int centerX = (Screen.width - photoSize) / 2;
+        int centerY = (Screen.height - photoSize) / 2;
+
+        // create texture
+        Texture2D screenshot = new Texture2D(photoSize, photoSize, TextureFormat.RGB24, false);
+
+        // read only the pixels in the center square
+        screenshot.ReadPixels(new Rect(centerX, centerY, photoSize, photoSize), 0, 0);
+        screenshot.Apply();
+
+        // show ui again
+        mainUICanvas.enabled = true;
+
+        // convert and save image
+        Sprite photoSprite = Sprite.Create(screenshot, new Rect(0, 0, photoSize, photoSize), new Vector2(0.5f, 0.5f));
+
+        ClueEntry newEntry = new ClueEntry { description = description, photo = photoSprite };
+        discoveredClues.Add(newEntry);
+
+        CreateJournalUIEntry(newEntry);
+        StartCoroutine(ShowNotification());
+    }
+
+    private void CreateJournalUIEntry(ClueEntry entry)
+    {
+        GameObject newClueObj = Instantiate(cluePrefab, clueContainer);
+
+        // create prefab with image and textmesh
+        newClueObj.GetComponentInChildren<Image>().sprite = entry.photo;
+        newClueObj.GetComponentInChildren<TextMeshProUGUI>().text = entry.description;
     }
 
     public void ToggleJournal()
@@ -59,27 +104,16 @@ public class JournalManager : MonoBehaviour
         bool isActive = !journalPanel.activeSelf;
         journalPanel.SetActive(isActive);
 
-        // Handle cursor and movement when journal is open
-        if (isActive)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            Time.timeScale = 0; // Optional: Pause game while reading
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-            Time.timeScale = 1;
-        }
+        Cursor.lockState = isActive ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = isActive;
+        Time.timeScale = isActive ? 0 : 1;
     }
 
-    private System.Collections.IEnumerator ShowNotification()
+    private IEnumerator ShowNotification()
     {
         if (newClueNotification == null) yield break;
-
         newClueNotification.SetActive(true);
-        yield return new WaitForSeconds(popupDuration);
+        yield return new WaitForSecondsRealtime(popupDuration);
         newClueNotification.SetActive(false);
     }
 }

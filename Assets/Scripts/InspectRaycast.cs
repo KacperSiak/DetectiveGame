@@ -14,7 +14,7 @@ public class InspectRaycast : MonoBehaviour
 
     void Update()
     {
-        // if inspecting, just stop. 
+        // if inspecting, just stop this code
         if (InspectSystem.IsInspecting) return;
 
         HandleRaycast();
@@ -29,7 +29,7 @@ public class InspectRaycast : MonoBehaviour
         {
             if (hit.collider.CompareTag("InteractObject"))
             {
-                // Only do this if we aren't already hovering over THIS specific object
+                // optimization - only do this if we aren't already hovering over this specific object
                 if (!isHovering)
                 {
                     ObjectFound(hit.collider.gameObject);
@@ -38,8 +38,7 @@ public class InspectRaycast : MonoBehaviour
                 // handle the click
                 if (Input.GetMouseButtonDown(0))
                 {
-                    // clean up the hover state BEFORE starting inspection
-                    // to prevent the UI/Outline from getting "stuck"
+                    // clean up the hover state
                     ClearSelection();
                     inspectSystem.StartInspecting(hit.collider.transform);
                 }

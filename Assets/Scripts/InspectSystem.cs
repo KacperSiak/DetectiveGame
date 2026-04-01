@@ -55,7 +55,7 @@ public class InspectSystem : MonoBehaviour
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         if (scroll != 0)
         {
-            // Adjust distance and clamp it so the item doesn't fly into the player's brain
+            // limit distance
             currentZoomDist += -scroll * zoomSpeed;
             currentZoomDist = Mathf.Clamp(currentZoomDist, minZoomDist, maxZoomDist);
         }
