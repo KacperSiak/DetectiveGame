@@ -1,69 +1,101 @@
 using UnityEngine;
 using UnityEngine.UI;
+
 public class InspectRaycast : MonoBehaviour
 {
     [SerializeField] private int rayLength = 5;
     [SerializeField] private LayerMask layerMaskInteract;
-    private ObjectController raycastedObj;
-
     [SerializeField] private Image crosshair;
-    private bool isCrosshairActive;
-    private bool doOnce;
-
     [SerializeField] private InspectSystem inspectSystem;
+
+    private ObjectController raycastedObj;
+    private Outline currentOutline;
+    private bool isHovering;
 
     void Update()
     {
-        RaycastHit hit;
-        Vector3 fwd =transform.TransformDirection(Vector3.forward);
+        // if inspecting, just stop. 
+        if (InspectSystem.IsInspecting) return;
 
-        if (Physics.Raycast(transform.position, fwd, out hit, rayLength, layerMaskInteract.value)) 
+        HandleRaycast();
+    }
+
+    private void HandleRaycast()
+    {
+        RaycastHit hit;
+        Vector3 fwd = transform.TransformDirection(Vector3.forward);
+
+        if (Physics.Raycast(transform.position, fwd, out hit, rayLength, layerMaskInteract.value))
         {
             if (hit.collider.CompareTag("InteractObject"))
             {
-                if (!doOnce)
+                // Only do this if we aren't already hovering over THIS specific object
+                if (!isHovering)
                 {
-                    raycastedObj = hit.collider.gameObject.GetComponent<ObjectController>();
-                    raycastedObj.ShowObjectName();
-                    CrosshairChange(true);
+                    ObjectFound(hit.collider.gameObject);
                 }
 
-                isCrosshairActive = true;
-                doOnce = true;
-
+                // handle the click
                 if (Input.GetMouseButtonDown(0))
                 {
+                    // clean up the hover state BEFORE starting inspection
+                    // to prevent the UI/Outline from getting "stuck"
+                    ClearSelection();
                     inspectSystem.StartInspecting(hit.collider.transform);
-
-
-                    CrosshairChange(false);
                 }
-
+            }
+            else if (isHovering)
+            {
+                ClearSelection();
             }
         }
-        else
+        else if (isHovering)
         {
-            if(isCrosshairActive)
-            {
-                raycastedObj.HideObjectName();
-                CrosshairChange(false);
-                doOnce = false;
-            }
-
-
+            ClearSelection();
         }
     }
 
-    void CrosshairChange(bool on)
+    private void ObjectFound(GameObject obj)
     {
-        if(on && !doOnce)
+        isHovering = true;
+        raycastedObj = obj.GetComponent<ObjectController>();
+
+        if (raycastedObj != null)
         {
-            crosshair.color = Color.red;
+            raycastedObj.ShowObjectName();
         }
-        else
+
+        if (obj.TryGetComponent<Outline>(out Outline outline))
         {
-            crosshair.color = Color.white;
-            isCrosshairActive = false;
+            currentOutline = outline;
+            currentOutline.enabled = true;
         }
+
+        CrosshairChange(true);
+    }
+
+    public void ClearSelection()
+    {
+        if (!isHovering) return; // don't clear if nothing is selected
+
+        if (raycastedObj != null)
+        {
+            raycastedObj.HideObjectName();
+            raycastedObj = null;
+        }
+
+        if (currentOutline != null)
+        {
+            currentOutline.enabled = false;
+            currentOutline = null;
+        }
+
+        CrosshairChange(false);
+        isHovering = false;
+    }
+
+    private void CrosshairChange(bool on)
+    {
+        crosshair.color = on ? Color.red : Color.white;
     }
 }
