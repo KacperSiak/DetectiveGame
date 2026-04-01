@@ -8,5 +8,6 @@ public class InspectClue : MonoBehaviour
     {
         Debug.Log("Clue: " + clueDescription);
         // do stuff when clue found xd
+        JournalManager.Instance.AddClue(clueDescription); // the stuff when clue found xd
     }
 }
