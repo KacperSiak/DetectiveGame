@@ -25,15 +25,21 @@ public class InspectSystem : MonoBehaviour
 
     //private bool isMoving = false;
 
+    [Header("Zoom Settings")]
+    [SerializeField] private float zoomSpeed = 5f;
+    [SerializeField] private float minZoomDist = 0.5f; // closest point to camera
+    [SerializeField] private float maxZoomDist = 2.5f; // furthest point from camera
+    private float currentZoomDist;
+
     void Update()
     {
         if (currentItem == null) return;
 
+        HandleZoom();
+
         // move the item to the socket in front of camera
-        if (Vector3.Distance(currentItem.position, inspectionSocket.position) > 0.01f)
-        {
-            currentItem.position = Vector3.Lerp(currentItem.position, inspectionSocket.position, Time.deltaTime * moveSpeed);
-        }
+        Vector3 targetPos = Camera.main.transform.position + (Camera.main.transform.forward * currentZoomDist);
+        currentItem.position = Vector3.Lerp(currentItem.position, targetPos, Time.deltaTime * moveSpeed);
 
         HandleInput();
 
@@ -44,6 +50,16 @@ public class InspectSystem : MonoBehaviour
         }
     }
 
+    private void HandleZoom()
+    {
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        if (scroll != 0)
+        {
+            // Adjust distance and clamp it so the item doesn't fly into the player's brain
+            currentZoomDist += -scroll * zoomSpeed;
+            currentZoomDist = Mathf.Clamp(currentZoomDist, minZoomDist, maxZoomDist);
+        }
+    }
     private void HandleInput()
     {
         // when pressed
@@ -117,6 +133,9 @@ public class InspectSystem : MonoBehaviour
         // save original position
         originalPos = currentItem.position;
         originalRot = currentItem.rotation;
+
+        // start item at socket distance
+        currentZoomDist = Vector3.Distance(Camera.main.transform.position, inspectionSocket.position);
 
         // disable physics
         if (currentItem.TryGetComponent<Rigidbody>(out Rigidbody rb))
