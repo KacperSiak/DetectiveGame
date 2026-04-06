@@ -90,13 +90,32 @@ public class JournalManager : MonoBehaviour
         StartCoroutine(ShowNotification());
     }
 
+    //private void CreateJournalUIEntry(ClueEntry entry)
+    //{
+    //    GameObject newClueObj = Instantiate(cluePrefab, clueContainer);
+
+    //    // create prefab with image and textmesh
+    //    newClueObj.GetComponentInChildren<Image>().sprite = entry.photo;
+    //    newClueObj.GetComponentInChildren<TextMeshProUGUI>().text = entry.description;
+    //}
+
     private void CreateJournalUIEntry(ClueEntry entry)
     {
+        // spawn the prefab object
         GameObject newClueObj = Instantiate(cluePrefab, clueContainer);
 
-        // create prefab with image and textmesh
-        newClueObj.GetComponentInChildren<Image>().sprite = entry.photo;
-        newClueObj.GetComponentInChildren<TextMeshProUGUI>().text = entry.description;
+        // get helper script on the journal entry
+        JournalEntryDisplay displayScript = newClueObj.GetComponent<JournalEntryDisplay>();
+
+        // send the data to the script
+        if (displayScript != null)
+        {
+            displayScript.Setup(entry.description, entry.photo);
+        }
+        else
+        {
+            Debug.LogError("The Clue Prefab is missing the JournalEntryDisplay script!");
+        }
     }
 
     public void ToggleJournal()
