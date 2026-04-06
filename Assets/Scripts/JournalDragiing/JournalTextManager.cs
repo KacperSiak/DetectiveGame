@@ -8,6 +8,7 @@ public class JournalTextManager : MonoBehaviour
     [SerializeField] private Button journalCheck;
     [SerializeField] private GameObject journal;
     [SerializeField] private GameObject wordBank;
+    [SerializeField] private GameObject canvas;
 
     private int goodSlotCounter;
 
@@ -20,17 +21,26 @@ public class JournalTextManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && Cursor.lockState == CursorLockMode.Locked)
+        if(Input.GetKeyDown(KeyCode.E) && !InspectSystem.IsInspecting)
         {
-            Cursor.lockState = CursorLockMode.None;
-            journal.SetActive(true);
-            wordBank.SetActive(true);
-        }
-        else if ((Input.GetKeyDown(KeyCode.E) && Cursor.lockState == CursorLockMode.None))
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            journal.SetActive(false);
-            wordBank.SetActive(false);
+            if(!journal.activeSelf)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                journal.SetActive(true);
+                wordBank.SetActive(true);
+                canvas.SetActive(false);
+                Time.timeScale = 0;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                journal.SetActive(false);
+                wordBank.SetActive(false);
+                canvas.SetActive(true);
+                Time.timeScale = 1;
+            }
         }
     }
 
