@@ -1,9 +1,11 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class DraggableWord : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    public int ID; // { private set; get; }
+    public int itemID;// { private set; get; }
+    [SerializeField] private TextMeshProUGUI itemName;
 
     private RectTransform _rectTransform;
     private CanvasGroup _canvasGroup;
@@ -14,6 +16,12 @@ public class DraggableWord : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         _rectTransform = GetComponent<RectTransform>();
         _canvasGroup = GetComponent<CanvasGroup>();
+    }
+
+    public void Init(int ID, string name)
+    {
+        itemID = ID;
+        itemName.text = name;
     }
 
     public void OnBeginDrag(PointerEventData eventData)

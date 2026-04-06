@@ -26,14 +26,5 @@ public class CameraLook : MonoBehaviour
 
         playerBody.Rotate(Vector3.up * mouseX);
 
-        if(Input.GetKeyDown(KeyCode.E) && Cursor.lockState == CursorLockMode.Locked)
-        {
-            Cursor.lockState = CursorLockMode.None;
-        }
-        else if ((Input.GetKeyDown(KeyCode.E) && Cursor.lockState == CursorLockMode.None))
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-
     }
 }
