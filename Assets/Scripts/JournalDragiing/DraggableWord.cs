@@ -6,6 +6,7 @@ public class DraggableWord : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 {
     public int itemID;// { private set; get; }
     [SerializeField] private TextMeshProUGUI itemName;
+    public string localItemName;
 
     private RectTransform _rectTransform;
     private CanvasGroup _canvasGroup;
@@ -22,6 +23,7 @@ public class DraggableWord : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         itemID = ID;
         itemName.text = name;
+        localItemName  = name;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
