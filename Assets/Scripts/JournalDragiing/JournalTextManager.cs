@@ -2,19 +2,24 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using System;
+using TMPro;
+
 public class JournalTextManager : MonoBehaviour
 {
     [SerializeField] private List<WordSlot> slots = new();
     [SerializeField] private Button journalCheck;
+    [SerializeField] private Button okButton;
     [SerializeField] private GameObject journal;
     [SerializeField] private GameObject wordBank;
     [SerializeField] private GameObject canvas;
+    [SerializeField] private TextMeshProUGUI caseText;
 
     private int goodSlotCounter;
 
     void Start()
     {
         journalCheck.onClick.AddListener(CheckJournal);
+        okButton.onClick.AddListener(OkButton);
         journal.SetActive(false);
         wordBank.SetActive(false);
     }
@@ -62,11 +67,18 @@ public class JournalTextManager : MonoBehaviour
 
         if(goodSlotCounter == slots.Count)
         {
-            Debug.Log("Wszystko dzia³a");
+            caseText.gameObject.SetActive(true);
+            caseText.text = "Case Solved";
         }
         else
         {
-            Debug.Log("Mamy b³ad");
+            caseText.gameObject.SetActive(true);
+            caseText.text = "There is mistake";
         }
+    }
+
+    private void OkButton()
+    {
+        caseText.gameObject.SetActive(false);
     }
 }
