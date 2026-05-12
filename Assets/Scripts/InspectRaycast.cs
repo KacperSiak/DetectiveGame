@@ -9,7 +9,7 @@ public class InspectRaycast : MonoBehaviour
     [SerializeField] private InspectSystem inspectSystem;
 
     private ObjectController raycastedObj;
-    private Outline currentOutline;
+    private OutlineForClues currentOutline;
     private bool isHovering;
 
     void Update()
@@ -64,7 +64,7 @@ public class InspectRaycast : MonoBehaviour
             raycastedObj.ShowObjectName();
         }
 
-        if (obj.TryGetComponent<Outline>(out Outline outline))
+        if (obj.TryGetComponent<OutlineForClues>(out OutlineForClues outline))
         {
             currentOutline = outline;
             currentOutline.enabled = true;
