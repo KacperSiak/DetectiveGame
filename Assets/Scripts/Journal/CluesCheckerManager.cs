@@ -5,7 +5,9 @@ public class CluesCheckerManager : MonoBehaviour
 {
     [SerializeField] private Material matForSuspects;
     [SerializeField] private Material matForTools;
+    [SerializeField] private Material matForEvidences;
     [SerializeField] private GameObject wordPrefab;
+
 
     private void Awake()
     {
@@ -14,6 +16,7 @@ public class CluesCheckerManager : MonoBehaviour
 
     private void AddClueForChecker(string name, int ID, CluesCheckerSection section)
     {
+        if (name == null) return;
 
         foreach (Transform child in transform)
         {
@@ -32,6 +35,10 @@ public class CluesCheckerManager : MonoBehaviour
 
             case CluesCheckerSection.Suspects:
                 word.Init(name, matForSuspects.color);
+                break;
+
+            case CluesCheckerSection.Evidence:
+                word.Init(name, matForEvidences.color);
                 break;
         }
     }
