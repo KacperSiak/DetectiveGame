@@ -3,7 +3,8 @@ using UnityEngine;
 public enum CluesCheckerSection
 {
     Tool,
-    Suspects
+    Suspects,
+    Evidence
 }
 public class InspectClue : MonoBehaviour
 {
