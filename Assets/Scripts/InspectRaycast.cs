@@ -57,9 +57,7 @@ public class InspectRaycast : MonoBehaviour
     private void ObjectFound(GameObject obj)
     {
         isHovering = true;
-        raycastedObj = obj.GetComponent<ObjectController>();
-
-        if (raycastedObj != null)
+        if (obj.TryGetComponent(out raycastedObj))
         {
             raycastedObj.ShowObjectName();
         }
@@ -67,7 +65,7 @@ public class InspectRaycast : MonoBehaviour
         if (obj.TryGetComponent<OutlineForClues>(out OutlineForClues outline))
         {
             currentOutline = outline;
-            currentOutline.enabled = true;
+            currentOutline.OutlineWidth = 2f;
         }
 
         CrosshairChange(true);
@@ -85,7 +83,7 @@ public class InspectRaycast : MonoBehaviour
 
         if (currentOutline != null)
         {
-            currentOutline.enabled = false;
+            currentOutline.OutlineWidth = 0f;
             currentOutline = null;
         }
 
