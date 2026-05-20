@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Rendering;
 
 public class InspectSystem : MonoBehaviour
 {
@@ -7,6 +8,10 @@ public class InspectSystem : MonoBehaviour
     [SerializeField] private CanvasGroup crosshairGroup;
     [SerializeField] private float fadeSpeed = 5f;
     private Coroutine fadeCoroutine;
+
+    [Header("Visuals")]
+    [SerializeField] private Volume blurVolume;
+    [SerializeField] private float blurFadeSpeed = 5f;
 
     [Header("Setup")]
     [SerializeField] private Transform inspectionSocket; // socket (empty) in front of camera
@@ -144,6 +149,8 @@ public class InspectSystem : MonoBehaviour
 
         FadeCrosshair(0f); //hide crosshair
 
+        if (blurVolume != null) StartCoroutine(FadeVolume(1f));
+
         currentItem = itemTransform;
 
         // save original position
@@ -184,6 +191,7 @@ public class InspectSystem : MonoBehaviour
         currentItem = null;
 
         FadeCrosshair(1f); //show crosshair
+        if (blurVolume != null) StartCoroutine(FadeVolume(0f));
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -215,4 +223,12 @@ public class InspectSystem : MonoBehaviour
         }
     }
 
+    private IEnumerator FadeVolume(float targetWeight)
+    {
+        while (!Mathf.Approximately(blurVolume.weight, targetWeight))
+        {
+            blurVolume.weight = Mathf.MoveTowards(blurVolume.weight, targetWeight, blurFadeSpeed * Time.deltaTime);
+            yield return null;
+        }
+    }
 }
