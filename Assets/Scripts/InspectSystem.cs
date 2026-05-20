@@ -11,6 +11,7 @@ public class InspectSystem : MonoBehaviour
     [SerializeField] private CanvasGroup crosshairGroup;
     [SerializeField] private float fadeSpeed = 5f;
     private Coroutine fadeCoroutine;
+    private Coroutine volumeFadeCoroutine;
 
     [Header("Visuals")]
     [SerializeField] private Volume blurVolume;
@@ -157,7 +158,7 @@ public class InspectSystem : MonoBehaviour
 
         FadeCrosshair(0f); //hide crosshair
 
-        if (blurVolume != null) StartCoroutine(FadeVolume(1f));
+        ChangeVolumeWeight(1f);
 
 
         // start item at socket distance
@@ -180,7 +181,7 @@ public class InspectSystem : MonoBehaviour
         IsInspecting = false; // allow other inputs
 
         FadeCrosshair(1f); //show crosshair
-        if (blurVolume != null) StartCoroutine(FadeVolume(0f));
+        ChangeVolumeWeight(0f);
 
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -238,6 +239,20 @@ public class InspectSystem : MonoBehaviour
             blurVolume.weight = Mathf.MoveTowards(blurVolume.weight, targetWeight, blurFadeSpeed * Time.deltaTime);
             yield return null;
         }
+    }
+
+    private void ChangeVolumeWeight(float targetWeight)
+    {
+        if (blurVolume == null) return;
+
+        // If a fade is already happening, stop it!
+        if (volumeFadeCoroutine != null)
+        {
+            StopCoroutine(volumeFadeCoroutine);
+        }
+
+        // Start the new fade and save the reference
+        volumeFadeCoroutine = StartCoroutine(FadeVolume(targetWeight));
     }
 
     private void HandleInspectingState()
