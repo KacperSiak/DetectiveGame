@@ -26,7 +26,8 @@ public class DoorOpener : MonoBehaviour
         if (Physics.Raycast(ray, out hit, rayDistance))
         {
             hit.collider.TryGetComponent<DoorController>(out var door);
-            door.InteractWithDoor();
+
+            if(door != null) door.InteractWithDoor();
         }
     }
 
