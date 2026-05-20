@@ -1,7 +1,13 @@
 using UnityEngine;
+using System.Collections;
 
 public class InspectSystem : MonoBehaviour
 {
+    [Header("UI Canvas refs")]
+    [SerializeField] private CanvasGroup crosshairGroup;
+    [SerializeField] private float fadeSpeed = 5f;
+    private Coroutine fadeCoroutine;
+
     [Header("Setup")]
     [SerializeField] private Transform inspectionSocket; // socket (empty) in front of camera
     [SerializeField] private float rotationSpeed = 500f;
@@ -14,6 +20,7 @@ public class InspectSystem : MonoBehaviour
     private Transform currentItem;
     private Vector3 originalPos;
     private Quaternion originalRot;
+
 
     [Header("Click vs Drag Settings")]
     [SerializeField] private float clickTimeThreshold = 0.2f; // max time for a 'click'
@@ -31,6 +38,13 @@ public class InspectSystem : MonoBehaviour
     [SerializeField] private float maxZoomDist = 2.5f; // furthest point from camera
     private float currentZoomDist;
 
+    private int originalLayer;
+    private int inspectingLayer;
+
+    private void Start()
+    {
+        inspectingLayer = LayerMask.NameToLayer("Inspecting");
+    }
     void Update()
     {
         if (currentItem == null) return;
@@ -128,6 +142,8 @@ public class InspectSystem : MonoBehaviour
         
         IsInspecting = true; //block other inputs
 
+        FadeCrosshair(0f); //hide crosshair
+
         currentItem = itemTransform;
 
         // save original position
@@ -145,6 +161,9 @@ public class InspectSystem : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        originalLayer = itemTransform.gameObject.layer;
+        SetLayerRecursively(itemTransform.gameObject, inspectingLayer);
     }
 
     public void StopInspecting()
@@ -159,10 +178,41 @@ public class InspectSystem : MonoBehaviour
             rb.isKinematic = false;
         }
 
+        SetLayerRecursively(currentItem.gameObject, originalLayer);
+
         IsInspecting = false; // allow other inputs
         currentItem = null;
 
+        FadeCrosshair(1f); //show crosshair
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
     }
+    private void FadeCrosshair(float targetAlpha)
+    {
+        // Stop the current fade if one is already running to avoid "jitter"
+        if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
+
+        fadeCoroutine = StartCoroutine(DoFade(targetAlpha));
+    }
+
+    private IEnumerator DoFade(float targetAlpha)
+    {
+        while (!Mathf.Approximately(crosshairGroup.alpha, targetAlpha))
+        {
+            crosshairGroup.alpha = Mathf.MoveTowards(crosshairGroup.alpha, targetAlpha, fadeSpeed * Time.deltaTime);
+            yield return null;
+        }
+    }
+
+    private void SetLayerRecursively(GameObject obj, int newLayer)
+    {
+        obj.layer = newLayer;
+        foreach (Transform child in obj.transform)
+        {
+            SetLayerRecursively(child.gameObject, newLayer);
+        }
+    }
+
 }
