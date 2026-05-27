@@ -2150,7 +2150,7 @@ GameObject:
   - component: {fileID: 320562148}
   - component: {fileID: 320562150}
   - component: {fileID: 320562149}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: MirrorCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2255,7 +2255,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 501
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 022f80e77a6bada44b08fb02adb14be5, type: 2}
   m_TargetDisplay: 0
@@ -5098,7 +5098,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 911298035}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99918604
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -11353,53 +11353,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 80122079132728499, guid: 347c542d6919b9148845776f290dab80, type: 3}
---- !u!1 &1703874733
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1703874735}
-  - component: {fileID: 1703874734}
-  m_Layer: 0
-  m_Name: MirrorManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1703874734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1703874733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c834c9f17957f074c849cb6bbbe1ff1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerCamera: {fileID: 1741773262}
-  mirrorPlane: {fileID: 5021899676763887358}
-  mirrorCamera: {fileID: 320562150}
---- !u!4 &1703874735
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1703874733}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.325733, y: -0.08919566, z: -5.4719453}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1741773261
 GameObject:
   m_ObjectHideFlags: 0
@@ -14441,7 +14394,7 @@ GameObject:
   - component: {fileID: 6289903729501500581}
   - component: {fileID: 8348763338258396400}
   - component: {fileID: 1165686061566905341}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: F_FancyMirror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14474,7 +14427,8 @@ GameObject:
   - component: {fileID: 5021899676763887358}
   - component: {fileID: 8223155875521894747}
   - component: {fileID: 6195391758054387089}
-  m_Layer: 0
+  - component: {fileID: 8223155875521894748}
+  m_Layer: 1
   m_Name: F_MirrorReflective_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14549,6 +14503,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5691018904178609220}
   m_Mesh: {fileID: 2544962057266614769, guid: 626aecd731fb6574e93aeeccb47422a8, type: 3}
+--- !u!114 &8223155875521894748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5691018904178609220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c834c9f17957f074c849cb6bbbe1ff1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 1741773262}
+  mirrorCamera: {fileID: 320562148}
 --- !u!33 &8348763338258396400
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -14566,7 +14534,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 804233682733767021}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: P_FancyMirror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14597,4 +14565,3 @@ SceneRoots:
   - {fileID: 779128802}
   - {fileID: 804233682733767021}
   - {fileID: 297231574}
-  - {fileID: 1703874735}

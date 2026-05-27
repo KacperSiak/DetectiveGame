@@ -2,21 +2,27 @@ using UnityEngine;
 
 public class MirrorScript : MonoBehaviour
 {
-    public Transform playerCamera;
-    public Transform mirrorPlane;
-    public Camera mirrorCamera;
+    [Header("Setup")]
+    [SerializeField] private Transform playerCamera; 
+    [SerializeField] private Transform mirrorCamera; 
 
     void LateUpdate()
     {
-        Vector3 localPos = mirrorPlane.InverseTransformPoint(playerCamera.position);
+        if (playerCamera == null || mirrorCamera == null) return;
 
-        localPos.x *= -1;
+        Vector3 localPlayerPos = transform.InverseTransformPoint(playerCamera.position);
+        localPlayerPos.z = -localPlayerPos.z;
+        mirrorCamera.position = transform.TransformPoint(localPlayerPos);
 
-        mirrorCamera.transform.position =
-            mirrorPlane.TransformPoint(localPos);
+        Vector3 localPlayerForward = transform.InverseTransformDirection(playerCamera.forward);
+        Vector3 localPlayerUp = transform.InverseTransformDirection(playerCamera.up);
 
-        Vector3 localEuler = playerCamera.eulerAngles;
-        mirrorCamera.transform.eulerAngles =
-            new Vector3(localEuler.x, -localEuler.y, localEuler.z);
+        localPlayerForward.z = -localPlayerForward.z;
+        localPlayerUp.z = -localPlayerUp.z;
+
+        Vector3 worldLookDir = transform.TransformDirection(localPlayerForward);
+        Vector3 worldUpDir = transform.TransformDirection(localPlayerUp);
+
+        mirrorCamera.rotation = Quaternion.LookRotation(worldLookDir, worldUpDir);
     }
 }
