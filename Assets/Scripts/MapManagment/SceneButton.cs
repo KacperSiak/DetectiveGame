@@ -6,6 +6,13 @@ public class SceneButton : MonoBehaviour
 {
     public string sceneName;
 
+    [SerializeField] private GameObject blocker;
+
+    private void Awake()
+    {
+        MapManager.OnNewPlaceFind += CheckBlocker;
+    }
+
     public void MoveToScene()
     {
         if (sceneName != null) 
@@ -17,5 +24,15 @@ public class SceneButton : MonoBehaviour
             }
         }
         else Debug.LogError("There is no Scene name");
+    }
+
+    private void CheckBlocker(string foundSceneName)
+    {
+        if(foundSceneName == sceneName) blocker.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        MapManager.OnNewPlaceFind -= CheckBlocker;
     }
 }

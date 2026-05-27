@@ -1,9 +1,11 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MapManager : MonoBehaviour
 {
     public static MapManager Instance;
+    public static Action<string> OnNewPlaceFind;
 
     [SerializeField] private GameObject map;
 
@@ -54,4 +56,10 @@ public class MapManager : MonoBehaviour
         if (currentScene == scene) return false;
         else return true;
     }
+
+    public void NewMApEntryFound(string foundScene)
+    {
+        OnNewPlaceFind?.Invoke(foundScene);
+    }
+
 }
