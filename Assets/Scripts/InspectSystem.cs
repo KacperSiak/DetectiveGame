@@ -1,7 +1,22 @@
 using UnityEngine;
+using System.Collections;
+using UnityEngine.Rendering;
 
 public class InspectSystem : MonoBehaviour
 {
+    private enum InspectionState { None, Inspecting, Returning }
+    private InspectionState currentState = InspectionState.None;
+
+    [Header("UI Canvas refs")]
+    [SerializeField] private CanvasGroup crosshairGroup;
+    [SerializeField] private float fadeSpeed = 5f;
+    private Coroutine fadeCoroutine;
+    private Coroutine volumeFadeCoroutine;
+
+    [Header("Visuals")]
+    [SerializeField] private Volume blurVolume;
+    [SerializeField] private float blurFadeSpeed = 5f;
+
     [Header("Setup")]
     [SerializeField] private Transform inspectionSocket; // socket (empty) in front of camera
     [SerializeField] private float rotationSpeed = 500f;
@@ -14,6 +29,7 @@ public class InspectSystem : MonoBehaviour
     private Transform currentItem;
     private Vector3 originalPos;
     private Quaternion originalRot;
+
 
     [Header("Click vs Drag Settings")]
     [SerializeField] private float clickTimeThreshold = 0.2f; // max time for a 'click'
@@ -31,23 +47,26 @@ public class InspectSystem : MonoBehaviour
     [SerializeField] private float maxZoomDist = 2.5f; // furthest point from camera
     private float currentZoomDist;
 
+    private int originalLayer;
+    private int inspectingLayer;
+
+    private void Start()
+    {
+        inspectingLayer = LayerMask.NameToLayer("Inspecting");
+    }
     void Update()
     {
-        if (currentItem == null) return;
+        if (currentItem == null || currentState == InspectionState.None) return;
 
-        HandleZoom();
-
-        // move the item to the socket in front of camera
-        Vector3 targetPos = Camera.main.transform.position + (Camera.main.transform.forward * currentZoomDist);
-        currentItem.position = Vector3.Lerp(currentItem.position, targetPos, Time.deltaTime * moveSpeed);
-
-        HandleInput();
-
-        // right click to stop inspecting
-        if (Input.GetMouseButtonDown(1))
+        if (currentState == InspectionState.Inspecting)
         {
-            StopInspecting();
+            HandleInspectingState();
         }
+        else if (currentState == InspectionState.Returning)
+        {
+            HandleReturningState();
+        }
+    
     }
 
     private void HandleZoom()
@@ -125,14 +144,22 @@ public class InspectSystem : MonoBehaviour
     public void StartInspecting(Transform itemTransform)
     {
         if (currentItem != null) return; // check if already inspecting
-        
-        IsInspecting = true; //block other inputs
 
         currentItem = itemTransform;
 
         // save original position
         originalPos = currentItem.position;
         originalRot = currentItem.rotation;
+        originalLayer = itemTransform.gameObject.layer; //original layer
+        SetLayerRecursively(itemTransform.gameObject, inspectingLayer); //save layer for all children
+
+        IsInspecting = true; //block other inputs
+        currentState = InspectionState.Inspecting;
+
+        FadeCrosshair(0f); //hide crosshair
+
+        ChangeVolumeWeight(1f);
+
 
         // start item at socket distance
         currentZoomDist = Vector3.Distance(Camera.main.transform.position, inspectionSocket.position);
@@ -145,24 +172,111 @@ public class InspectSystem : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
     }
 
     public void StopInspecting()
     {
-        // return item
+        currentState = InspectionState.Returning;
+        IsInspecting = false; // allow other inputs
+
+        FadeCrosshair(1f); //show crosshair
+        ChangeVolumeWeight(0f);
+
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+    }
+
+    private void FinishReturning()
+    {
+        //clean up physics and layers
         currentItem.position = originalPos;
         currentItem.rotation = originalRot;
 
         // reenable physics if needed
         if (currentItem.TryGetComponent<Rigidbody>(out Rigidbody rb))
-        {
             rb.isKinematic = false;
+
+        // put it back on its original world layer
+        SetLayerRecursively(currentItem.gameObject, originalLayer);
+
+        currentItem = null;
+        currentState = InspectionState.None;
+    }
+
+    private void FadeCrosshair(float targetAlpha)
+    {
+        // Stop the current fade if one is already running to avoid "jitter"
+        if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
+
+        fadeCoroutine = StartCoroutine(DoFade(targetAlpha));
+    }
+
+    private IEnumerator DoFade(float targetAlpha)
+    {
+        while (!Mathf.Approximately(crosshairGroup.alpha, targetAlpha))
+        {
+            crosshairGroup.alpha = Mathf.MoveTowards(crosshairGroup.alpha, targetAlpha, fadeSpeed * Time.deltaTime);
+            yield return null;
+        }
+    }
+
+    private void SetLayerRecursively(GameObject obj, int newLayer)
+    {
+        obj.layer = newLayer;
+        foreach (Transform child in obj.transform)
+        {
+            SetLayerRecursively(child.gameObject, newLayer);
+        }
+    }
+
+    private IEnumerator FadeVolume(float targetWeight)
+    {
+        while (!Mathf.Approximately(blurVolume.weight, targetWeight))
+        {
+            blurVolume.weight = Mathf.MoveTowards(blurVolume.weight, targetWeight, blurFadeSpeed * Time.deltaTime);
+            yield return null;
+        }
+    }
+
+    private void ChangeVolumeWeight(float targetWeight)
+    {
+        if (blurVolume == null) return;
+
+        // If a fade is already happening, stop it!
+        if (volumeFadeCoroutine != null)
+        {
+            StopCoroutine(volumeFadeCoroutine);
         }
 
-        IsInspecting = false; // allow other inputs
-        currentItem = null;
+        // Start the new fade and save the reference
+        volumeFadeCoroutine = StartCoroutine(FadeVolume(targetWeight));
+    }
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+    private void HandleInspectingState()
+    {
+        HandleZoom();
+        Vector3 targetPos = Camera.main.transform.position + (Camera.main.transform.forward * currentZoomDist);
+        currentItem.position = Vector3.Lerp(currentItem.position, targetPos, Time.deltaTime * moveSpeed);
+
+        HandleInput();
+
+        if (Input.GetMouseButtonDown(1)) StopInspecting(); // right click to stop inspecting
+    }
+
+    private void HandleReturningState()
+    {
+        // smoothly move back to original spot
+        currentItem.position = Vector3.Lerp(currentItem.position, originalPos, Time.deltaTime * moveSpeed);
+        currentItem.rotation = Quaternion.Slerp(currentItem.rotation, originalRot, Time.deltaTime * moveSpeed);
+
+        // check if the item is close enough to finish and snap back
+        if (Vector3.Distance(currentItem.position, originalPos) < 0.01f &&
+            Quaternion.Angle(currentItem.rotation, originalRot) < 1f)
+        {
+            FinishReturning();
+        }
     }
 }
