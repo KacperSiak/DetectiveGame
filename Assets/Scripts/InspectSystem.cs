@@ -125,19 +125,34 @@ public class InspectSystem : MonoBehaviour
     }
     private void CheckForClue()
     {
-        // shoot a ray from the center of the camera forward
-        //Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
-
-        //shoot a ray from the mouse
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
+        int layerMask = 1 << inspectingLayer;
 
-        if (Physics.Raycast(ray, out hit, clueRayDistance, clueLayer))
+        RaycastHit[] hits = Physics.RaycastAll(ray, clueRayDistance, layerMask);
+
+        // Variables to track the closest
+        InspectClue closestClue = null;
+        float closestDistance = Mathf.Infinity;
+
+        foreach (RaycastHit hit in hits)
         {
+            // check for clue
             if (hit.collider.TryGetComponent<InspectClue>(out InspectClue clue))
             {
-                clue.OnFound();
+                // is it closer than the last clue we found?
+                if (hit.distance < closestDistance)
+                {
+                    // Make this the new closest
+                    closestDistance = hit.distance;
+                    closestClue = clue;
+                }
             }
+        }
+
+        // find the clue
+        if (closestClue != null)
+        {
+            closestClue.OnFound();
         }
     }
 
