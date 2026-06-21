@@ -8,6 +8,10 @@ public class MapManager : MonoBehaviour
     public static Action<string> OnNewPlaceFind;
 
     [SerializeField] private GameObject map;
+    [SerializeField] private Vector3 spawnForEleanor;
+    [SerializeField] private Vector3 spawnForPharmacy;
+    [SerializeField] private Vector3 spawnForWorkshop;
+    [SerializeField] private Vector3 spawnForResidence;
 
     public string currentScene;
 
@@ -57,9 +61,29 @@ public class MapManager : MonoBehaviour
         else return true;
     }
 
-    public void NewMApEntryFound(string foundScene)
+    public void NewMapEntryFound(string foundScene)
     {
         OnNewPlaceFind?.Invoke(foundScene);
+    }
+
+    public void SetupCharakter(int ID)
+    {
+        switch(ID)
+        {
+            case 1:
+                PlayerMovement.Instance.SetPosition(spawnForEleanor);
+                break;
+            case 2:
+                PlayerMovement.Instance.SetPosition(spawnForPharmacy);
+                break;
+            case 3:
+                PlayerMovement.Instance.SetPosition(spawnForWorkshop);
+                break;
+            case 4:
+                PlayerMovement.Instance.SetPosition(spawnForResidence);
+                break;
+
+        }
     }
 
 }

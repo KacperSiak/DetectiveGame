@@ -4,10 +4,25 @@ using UnityEngine.EventSystems;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement Instance; 
+
     [SerializeField] private float speed;
 
     private Vector3 _moveDirtection;
     private Rigidbody _rb;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
@@ -33,5 +48,8 @@ public class PlayerMovement : MonoBehaviour
         _rb.MovePosition(transform.position + globalMove * speed * Time.fixedDeltaTime);
     }
 
-  
+    public void SetPosition(Vector3 newPos)
+    {
+        transform.position = newPos;
+    }
 }
