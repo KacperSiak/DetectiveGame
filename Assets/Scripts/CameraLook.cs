@@ -9,7 +9,7 @@ public class CameraLook : MonoBehaviour
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        if(MapManager.Instance.currentScene != "MainMenu") Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()

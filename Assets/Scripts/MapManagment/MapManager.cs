@@ -35,7 +35,7 @@ public class MapManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.M) && currentScene != "MainMenu")
         {
             map.gameObject.SetActive(!map.activeSelf);
            if (map.activeSelf)
