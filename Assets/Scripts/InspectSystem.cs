@@ -130,13 +130,17 @@ public class InspectSystem : MonoBehaviour
 
         //shoot a ray from the mouse
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, clueRayDistance, clueLayer))
+        int layerMask = 1 << inspectingLayer;
+        RaycastHit[] hits = Physics.RaycastAll(ray, clueRayDistance, layerMask);
+
+        foreach (RaycastHit hit in hits)
         {
+            // Check every object hit
             if (hit.collider.TryGetComponent<InspectClue>(out InspectClue clue))
             {
                 clue.OnFound();
+                break; //Stop when found
             }
         }
     }
