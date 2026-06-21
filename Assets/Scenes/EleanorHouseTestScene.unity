@@ -10307,7 +10307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27d8843cd94c6e14788277e6154508a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crosshairGroup: {fileID: 0}
+  crosshairGroup: {fileID: 816384053}
   fadeSpeed: 5
   blurVolume: {fileID: 0}
   blurFadeSpeed: 5
@@ -10334,6 +10334,7 @@ GameObject:
   - component: {fileID: 816384050}
   - component: {fileID: 816384052}
   - component: {fileID: 816384051}
+  - component: {fileID: 816384053}
   m_Layer: 5
   m_Name: Crosshair
   m_TagString: Untagged
@@ -10398,6 +10399,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 816384049}
   m_CullTransparentMesh: 1
+--- !u!225 &816384053
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816384049}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &822845535
 GameObject:
   m_ObjectHideFlags: 0
@@ -10647,7 +10660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: AshfordsPharmacy
-  blocker: {fileID: 0}
+  blocker: {fileID: 934253434}
 --- !u!114 &830783436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24435,7 +24448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: EliasWorkshop
-  blocker: {fileID: 0}
+  blocker: {fileID: 82737801}
 --- !u!114 &1965728252
 MonoBehaviour:
   m_ObjectHideFlags: 0

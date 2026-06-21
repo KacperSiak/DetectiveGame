@@ -52,14 +52,12 @@ public class JournalManager : MonoBehaviour
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
-
-        journalCanvas.gameObject.SetActive(false);
     }
 
     private void Start()
     {
         SetPage(_currentPage);
-        journalCanvas.gameObject.SetActive(false );
+        journalCanvas.gameObject.SetActive(false);
     }
 
     private void Update()
