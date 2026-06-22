@@ -50,16 +50,21 @@ public class JournalManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
-        else Destroy(gameObject);
-
-        journalCanvas.gameObject.SetActive(false);
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Start()
     {
         SetPage(_currentPage);
-        journalCanvas.gameObject.SetActive(false );
+        journalCanvas.gameObject.SetActive(false);
     }
 
     private void Update()
