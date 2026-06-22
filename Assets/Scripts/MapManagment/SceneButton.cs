@@ -21,6 +21,7 @@ public class SceneButton : MonoBehaviour
             if(MapManager.Instance.MoveValidator(sceneName))
             {
                 SceneManager.LoadScene(sceneName);
+                MapManager.Instance.StartAfterSetup();
                 MapManager.Instance.currentScene = sceneName;
                 MapManager.Instance.SetupCharakter(sceneID);
             }

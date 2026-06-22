@@ -4,17 +4,15 @@ public class ObjectController : MonoBehaviour
 {
     [SerializeField] private string itemName;
 
-    [SerializeField] private InspectController inspectController;
-
     public void ShowObjectName()
     {
-        inspectController.ShowName(itemName);
+        InspectController.Instance.ShowName(itemName);
 
     }
 
     public void HideObjectName()
     {
-        inspectController.HideName();
+        InspectController.Instance.HideName();
     }
     
 }

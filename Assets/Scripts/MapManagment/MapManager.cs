@@ -66,6 +66,14 @@ public class MapManager : MonoBehaviour
         OnNewPlaceFind?.Invoke(foundScene);
     }
 
+    public void StartAfterSetup()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        Time.timeScale = 1;
+        map.SetActive(false);
+    }
+
     public void SetupCharakter(int ID)
     {
         switch(ID)

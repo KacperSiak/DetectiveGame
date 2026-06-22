@@ -991,7 +991,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Papier
-  inspectController: {fileID: 1524703720}
 --- !u!64 &167708776
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1801,9 +1800,9 @@ RectTransform:
   m_Father: {fileID: 849606847}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -17, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &245439943
 MonoBehaviour:
@@ -2854,10 +2853,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1032750597}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 400, y: -465}
-  m_SizeDelta: {x: 800, y: 30}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &341316652
 MonoBehaviour:
@@ -3687,7 +3686,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5a1d6cbeb159ac4092ca3ca4ca4058b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  voiceLineBar: {fileID: 1664200811}
   voiceLine: "Silas: Hmm. That\u2019s professional work. I think I need to visit
     a local cobbler."
 --- !u!114 &443026579
@@ -3993,7 +3991,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &500689868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4077,7 +4075,7 @@ RectTransform:
   - {fileID: 1857030751}
   - {fileID: 1924249210}
   - {fileID: 588789951}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 691745147}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5235,10 +5233,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1032750597}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 400, y: -205}
-  m_SizeDelta: {x: 800, y: 30}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &605925229
 MonoBehaviour:
@@ -5533,7 +5531,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: TeaCup
-  inspectController: {fileID: 1524703720}
 --- !u!1 &620739762
 GameObject:
   m_ObjectHideFlags: 0
@@ -6225,7 +6222,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Doniczka
-  inspectController: {fileID: 1524703720}
 --- !u!114 &688144587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6303,7 +6299,8 @@ Transform:
   m_LocalPosition: {x: -0.68154114, y: 0.79371405, z: -3.7236128}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 500689871}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &712766597
@@ -7084,12 +7081,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 779128800}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.0809646, y: -2.640659, z: -30.079395}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -956.33954, y: -397.08606, z: -29.943188}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1524703722}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &793347930
 PrefabInstance:
@@ -8596,7 +8593,7 @@ RectTransform:
   m_Father: {fileID: 1982555295}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -10357,9 +10354,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map: {fileID: 649295251}
-  spawnForEleanor: {x: 3.847, y: 0.933, z: 100}
-  spawnForPharmacy: {x: 50, y: 50, z: 50}
-  spawnForWorkshop: {x: 1, y: 2, z: 30}
+  spawnForEleanor: {x: 3.847, y: 0.933, z: 3.207}
+  spawnForPharmacy: {x: 0, y: 0.933, z: 0}
+  spawnForWorkshop: {x: 6.12, y: 0.933, z: 14.82}
   spawnForResidence: {x: 12, y: 32, z: 45}
   currentScene: 
 --- !u!4 &1063423607
@@ -12825,7 +12822,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Hammer
-  inspectController: {fileID: 1524703720}
 --- !u!65 &1351002981
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13762,7 +13758,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5a1d6cbeb159ac4092ca3ca4ca4058b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  voiceLineBar: {fileID: 1664200811}
   voiceLine: 'Silas: Medication? Was she sick with something? I need to ask the pharmacist
     if they know anything about it'
 --- !u!114 &1464688801
@@ -13796,7 +13791,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Leki
-  inspectController: {fileID: 1524703720}
 --- !u!114 &1464688803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14267,6 +14261,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectNameBG: {fileID: 1887026824}
   objectNameUI: {fileID: 1218955797}
+  voiceLineBar: {fileID: 1664200811}
 --- !u!114 &1524703721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14307,7 +14302,9 @@ Transform:
   m_LocalPosition: {x: 961.42053, y: 394.4454, z: -0.13620792}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1612851552}
+  - {fileID: 779128802}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1524777541
@@ -14906,10 +14903,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1032750597}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 400, y: -335}
-  m_SizeDelta: {x: 800, y: 30}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1612323905
 MonoBehaviour:
@@ -14971,7 +14968,7 @@ RectTransform:
   - {fileID: 626259266}
   - {fileID: 1887026825}
   - {fileID: 1664200810}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1524703722}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -16915,10 +16912,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1032750597}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 400, y: -75}
-  m_SizeDelta: {x: 800, y: 30}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1763915344
 MonoBehaviour:
@@ -18437,7 +18434,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Poduszka
-  inspectController: {fileID: 1524703720}
 --- !u!1 &1885230206
 GameObject:
   m_ObjectHideFlags: 0
@@ -20559,7 +20555,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: "Ksi\u0105\u017Cka"
-  inspectController: {fileID: 1524703720}
 --- !u!114 &2145542004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20872,16 +20867,13 @@ SceneRoots:
   - {fileID: 1671445481}
   - {fileID: 1627906418}
   - {fileID: 1535411629}
-  - {fileID: 500689871}
   - {fileID: 1524703722}
-  - {fileID: 1612851552}
   - {fileID: 1351002977}
   - {fileID: 608579160}
   - {fileID: 338921308}
   - {fileID: 1262958897}
   - {fileID: 815302036}
   - {fileID: 11935356}
-  - {fileID: 779128802}
   - {fileID: 804233682733767021}
   - {fileID: 297231574}
   - {fileID: 1363379602}
