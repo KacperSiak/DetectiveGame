@@ -1,8 +1,17 @@
 using UnityEngine;
 
+public enum JournalTextPage
+{
+    Eleanor,
+    Pharmacy,
+    Workshop,
+    Residence
+}
+
 public class WordBankAdd : MonoBehaviour
 {
     [SerializeField] private GameObject prefab;
+    [SerializeField] private JournalTextPage page;
 
     private void Awake()
     {
@@ -13,8 +22,10 @@ public class WordBankAdd : MonoBehaviour
         
     }
 
-    private void AddWord(string wordName, int wordID)
+    private void AddWord(string wordName, int wordID, JournalTextPage clueRoom)
     {
+        if (clueRoom != page) return;
+
         foreach(Transform child in transform)
         {
             child.TryGetComponent<DraggableWord>(out var foundWord);

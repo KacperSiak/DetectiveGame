@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class SceneButton : MonoBehaviour
 {
     public string sceneName;
+    public int sceneID;
 
     [SerializeField] private GameObject blocker;
 
@@ -20,7 +21,9 @@ public class SceneButton : MonoBehaviour
             if(MapManager.Instance.MoveValidator(sceneName))
             {
                 SceneManager.LoadScene(sceneName);
+                MapManager.Instance.StartAfterSetup();
                 MapManager.Instance.currentScene = sceneName;
+                MapManager.Instance.SetupCharakter(sceneID);
             }
         }
         else Debug.LogError("There is no Scene name");
