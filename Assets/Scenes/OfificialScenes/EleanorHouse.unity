@@ -7444,6 +7444,8 @@ GameObject:
   - component: {fileID: 745326515}
   - component: {fileID: 745326517}
   - component: {fileID: 745326516}
+  - component: {fileID: 745326519}
+  - component: {fileID: 745326518}
   m_Layer: 7
   m_Name: GameObject
   m_TagString: Untagged
@@ -7505,6 +7507,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 6.8363667, y: 6.981329, z: 1}
   m_Center: {x: -0.4761219, y: 0.030089546, z: -2.0038076e-16}
+--- !u!114 &745326518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745326514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1740634068cdadf4fa9029aff31b52df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToUnlock: CountValeriiResidence
+--- !u!114 &745326519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745326514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5a1d6cbeb159ac4092ca3ca4ca4058b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  voiceLine: 'Silas: It looks like the symbol of the Count from this town. I guess
+    I have to pay him a visit.'
 --- !u!1001 &748245742
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11182,9 +11211,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   map: {fileID: 649295251}
   spawnForEleanor: {x: 3.847, y: 0.933, z: 3.207}
-  spawnForPharmacy: {x: 0, y: 0.933, z: 0}
+  spawnForPharmacy: {x: 5.428, y: 0.933, z: 4.652}
   spawnForWorkshop: {x: 6.12, y: 0.933, z: 14.82}
-  spawnForResidence: {x: 12, y: 32, z: 45}
+  spawnForResidence: {x: 4.7, y: 0.933, z: 10.6}
   currentScene: 
 --- !u!4 &1063423607
 Transform:

@@ -1291,6 +1291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: AshfordsPharmacy
+  sceneID: 0
   blocker: {fileID: 0}
 --- !u!114 &301005731
 MonoBehaviour:
@@ -2657,7 +2658,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -0.000001276166, y: 388.49997}
+  m_AnchoredPosition: {x: -0.000001276166, y: 388.49973}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &587433757
@@ -3390,7 +3391,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 911298036}
   m_HandleRect: {fileID: 911298035}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -3487,6 +3488,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: EleanorHouse
+  sceneID: 0
   blocker: {fileID: 0}
 --- !u!114 &741169911
 MonoBehaviour:
@@ -4282,6 +4284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: CountValeriiResidence
+  sceneID: 0
   blocker: {fileID: 0}
 --- !u!114 &976591553
 MonoBehaviour:
@@ -4430,6 +4433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: EliasWorkshop
+  sceneID: 0
   blocker: {fileID: 0}
 --- !u!114 &996952246
 MonoBehaviour:
@@ -4928,6 +4932,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map: {fileID: 649295251}
+  spawnForEleanor: {x: 0, y: 0, z: 0}
+  spawnForPharmacy: {x: 0, y: 0, z: 0}
+  spawnForWorkshop: {x: 0, y: 0, z: 0}
+  spawnForResidence: {x: 0, y: 0, z: 0}
   currentScene: 
 --- !u!4 &1063423607
 Transform:
@@ -5877,6 +5885,60 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1403212535 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7259496964341779601, guid: 77cf8a19331bbca4b973a0d7cc3053ec, type: 3}
+  m_PrefabInstance: {fileID: 812996750440355072}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1403212537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403212535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 254eae35ef4a85349b6f894a19a5616a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clueDescription: book
+  clueText: book
+  clueID: 0
+  clueNameForCheckingManager: book
+  clueSection: 2
+  myRoom: 3
+--- !u!114 &1403212538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403212535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 516f81450fc1c2842b1cb1fbe5a8352d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: book
+--- !u!114 &1403212539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403212535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8917ecd70e8c07a48bd61c8d64a26a47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &1420982211
 GameObject:
   m_ObjectHideFlags: 0
@@ -6045,6 +6107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectNameBG: {fileID: 1887026824}
   objectNameUI: {fileID: 1218955797}
+  voiceLineBar: {fileID: 0}
 --- !u!114 &1524703721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7816,6 +7879,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 3530815645748825237, guid: fe2934fc671b8514a8f54da52d26c506, type: 3}
+  page: 0
 --- !u!114 &1871551931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8897,6 +8961,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.197
       objectReference: {fileID: 0}
+    - target: {fileID: 7259496964341779601, guid: 77cf8a19331bbca4b973a0d7cc3053ec, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7259496964341779601, guid: 77cf8a19331bbca4b973a0d7cc3053ec, type: 3}
+      propertyPath: m_TagString
+      value: InteractObject
+      objectReference: {fileID: 0}
     - target: {fileID: 9059954524000357203, guid: 77cf8a19331bbca4b973a0d7cc3053ec, type: 3}
       propertyPath: m_Name
       value: P_OfficeTable_Decorated
@@ -8904,7 +8976,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7259496964341779601, guid: 77cf8a19331bbca4b973a0d7cc3053ec, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1403212539}
+    - targetCorrespondingSourceObject: {fileID: 7259496964341779601, guid: 77cf8a19331bbca4b973a0d7cc3053ec, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1403212538}
+    - targetCorrespondingSourceObject: {fileID: 7259496964341779601, guid: 77cf8a19331bbca4b973a0d7cc3053ec, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1403212537}
   m_SourcePrefab: {fileID: 100100000, guid: 77cf8a19331bbca4b973a0d7cc3053ec, type: 3}
 --- !u!23 &1165686061566905341
 MeshRenderer:
