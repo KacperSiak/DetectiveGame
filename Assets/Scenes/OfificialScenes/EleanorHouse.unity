@@ -545,6 +545,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6524533383104980624, guid: 5009b4e7d0fc60d48b1f118fe068a89f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 57c60627297ea96448e60b35389634a0, type: 2}
     - target: {fileID: 7954285336304606690, guid: 5009b4e7d0fc60d48b1f118fe068a89f, type: 3}
       propertyPath: m_Name
       value: P_candle_01
@@ -615,6 +619,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 07b02e5317a6cb3499ab16788a57c675, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: b3b7789711da3654dbe1b8f0e3092e5a, type: 2}
     - target: {fileID: 919132149155446097, guid: 07b02e5317a6cb3499ab16788a57c675, type: 3}
       propertyPath: m_Name
       value: F_Box_01
@@ -851,6 +859,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 3ad895da1e567054891840e292616b3d, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: dfb410d78d4b04042acd36314c103e85, type: 2}
     - target: {fileID: 919132149155446097, guid: 3ad895da1e567054891840e292616b3d, type: 3}
       propertyPath: m_Name
       value: F_Chandelier_01 (1)
@@ -921,6 +933,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: d6dca49f8387a7f44986765355a1a9d5, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 746498f0b69b4c443beae669305cffaa, type: 2}
     - target: {fileID: 919132149155446097, guid: d6dca49f8387a7f44986765355a1a9d5, type: 3}
       propertyPath: m_Name
       value: F_Scroll_02
@@ -1485,6 +1501,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 464f99efbe11e4947a51624f42b6d18d, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7f4a79b934395264c9b94b2038282fca, type: 2}
     - target: {fileID: 919132149155446097, guid: 464f99efbe11e4947a51624f42b6d18d, type: 3}
       propertyPath: m_Name
       value: F_Pillow_01
@@ -1721,6 +1741,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 5cba3403f57379743b1ce59f968fbfed, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: cc9eab0e8d0b5584480d8f0fcb1ad399, type: 2}
     - target: {fileID: 919132149155446097, guid: 5cba3403f57379743b1ce59f968fbfed, type: 3}
       propertyPath: m_Name
       value: F_Bucket_01
@@ -3501,6 +3525,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: f10de1b12157ad44d84c51a3cbcff9b7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 044a3b8ae68f3cd4e8216bf7e0cba295, type: 2}
     - target: {fileID: 919132149155446097, guid: f10de1b12157ad44d84c51a3cbcff9b7, type: 3}
       propertyPath: m_Name
       value: F_Bed_01
@@ -4138,6 +4166,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 651a68dcd230cc7479ccc4ff8d25f0e4, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: fb1547deeff651849977dabefc5eec72, type: 2}
     - target: {fileID: 919132149155446097, guid: 651a68dcd230cc7479ccc4ff8d25f0e4, type: 3}
       propertyPath: m_Name
       value: f_minibasket_01
@@ -4812,6 +4844,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 14bbfa01e911c1645aabef5c4608951d, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 781cec2fe3a8e864d8792b2308cf65fe, type: 2}
     - target: {fileID: 919132149155446097, guid: 14bbfa01e911c1645aabef5c4608951d, type: 3}
       propertyPath: m_Name
       value: F_BedroomTable_01
@@ -5341,6 +5377,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1535411629}
     m_Modifications:
+    - target: {fileID: 3134519482796234369, guid: 46a9efe967564e74bac9444b60aa2a91, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e632d88ae00d46a489ccfc16d280f714, type: 2}
     - target: {fileID: 3495057934767093588, guid: 46a9efe967564e74bac9444b60aa2a91, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -6054,6 +6094,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1535411629}
     m_Modifications:
+    - target: {fileID: 1007353629431147991, guid: 3ec40c265806bcf479ecba20335394e0, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: be71f167268aefd47ad89f7c199c7baa, type: 2}
+    - target: {fileID: 2210183185755827314, guid: 3ec40c265806bcf479ecba20335394e0, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: be71f167268aefd47ad89f7c199c7baa, type: 2}
     - target: {fileID: 2806164960601310331, guid: 3ec40c265806bcf479ecba20335394e0, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -6793,6 +6841,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_Stalk_01
       objectReference: {fileID: 0}
+    - target: {fileID: 5475161577745426356, guid: 403de2dd818e3cf459260a3e17307f6f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 668c9f056e819d34491e01e62dec4f83, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7144,6 +7196,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: ffe603b537c262547af703199ffaa366, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 21013b30bb50b25429721da4a6952ef7, type: 2}
     - target: {fileID: 919132149155446097, guid: ffe603b537c262547af703199ffaa366, type: 3}
       propertyPath: m_Name
       value: F_Blanket_01
@@ -9016,6 +9072,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 41.941
       objectReference: {fileID: 0}
+    - target: {fileID: 7226889548794464011, guid: c878c21228260e04989bfd9661749c57, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 668c9f056e819d34491e01e62dec4f83, type: 2}
     - target: {fileID: 7453210767350362040, guid: c878c21228260e04989bfd9661749c57, type: 3}
       propertyPath: m_Name
       value: P_Herbs_01 (1)
@@ -10872,6 +10932,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.924
       objectReference: {fileID: 0}
+    - target: {fileID: 6524533383104980624, guid: 5009b4e7d0fc60d48b1f118fe068a89f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 57c60627297ea96448e60b35389634a0, type: 2}
     - target: {fileID: 7954285336304606690, guid: 5009b4e7d0fc60d48b1f118fe068a89f, type: 3}
       propertyPath: m_Name
       value: P_candle_01 (1)
@@ -13515,6 +13579,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 2d7a42c5334ec6a46984adde879dec6f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 746498f0b69b4c443beae669305cffaa, type: 2}
     - target: {fileID: 919132149155446097, guid: 2d7a42c5334ec6a46984adde879dec6f, type: 3}
       propertyPath: m_Name
       value: F_Scroll_01
@@ -13950,6 +14018,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: f_fruitbasket_01
       objectReference: {fileID: 0}
+    - target: {fileID: 2514864022042628899, guid: ee4e1db76fc20464d88187672efab5af, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: b21eed95e8a5951428c06a0c09980508, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14083,6 +14155,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 129.616
       objectReference: {fileID: 0}
+    - target: {fileID: 7226889548794464011, guid: c878c21228260e04989bfd9661749c57, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 668c9f056e819d34491e01e62dec4f83, type: 2}
     - target: {fileID: 7453210767350362040, guid: c878c21228260e04989bfd9661749c57, type: 3}
       propertyPath: m_Name
       value: P_Herbs_01 (2)
@@ -14359,6 +14435,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_Stalk_01 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5475161577745426356, guid: 403de2dd818e3cf459260a3e17307f6f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 668c9f056e819d34491e01e62dec4f83, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17245,6 +17325,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.92
       objectReference: {fileID: 0}
+    - target: {fileID: 6524533383104980624, guid: 5009b4e7d0fc60d48b1f118fe068a89f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 57c60627297ea96448e60b35389634a0, type: 2}
     - target: {fileID: 7954285336304606690, guid: 5009b4e7d0fc60d48b1f118fe068a89f, type: 3}
       propertyPath: m_Name
       value: P_candle_01 (2)
@@ -18143,6 +18227,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 597f6d4e4d16a904391330a712023d80, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2b5b2400f17e04e45a0850f51b18a99d, type: 2}
     - target: {fileID: 919132149155446097, guid: 597f6d4e4d16a904391330a712023d80, type: 3}
       propertyPath: m_Name
       value: F_Wardrobe_01
@@ -18580,6 +18668,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 075f874ed10d27f4aa26f88e670fc93a, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2a71d082d8d94254690668155fcf83b4, type: 2}
     - target: {fileID: 919132149155446097, guid: 075f874ed10d27f4aa26f88e670fc93a, type: 3}
       propertyPath: m_Name
       value: F_Chair_01
@@ -19194,6 +19286,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6484923389911304476, guid: 20de005bf6251dc4fbc5ffae186443f1, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e632d88ae00d46a489ccfc16d280f714, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19386,6 +19482,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 2e5a74f077b2975438ed7f5b91bfd16d, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d7d76bac86ff4ae409e221147a10e649, type: 2}
     - target: {fileID: 919132149155446097, guid: 2e5a74f077b2975438ed7f5b91bfd16d, type: 3}
       propertyPath: m_Name
       value: F_BedsideTable_01
@@ -20621,6 +20721,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7226889548794464011, guid: c878c21228260e04989bfd9661749c57, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 668c9f056e819d34491e01e62dec4f83, type: 2}
     - target: {fileID: 7453210767350362040, guid: c878c21228260e04989bfd9661749c57, type: 3}
       propertyPath: m_Name
       value: P_Herbs_01
